@@ -19,3 +19,8 @@ public class SortExample {
 
         }
 }
+
+// Output
+- 1  (sorting based on ID's)
+- 2
+- 3
