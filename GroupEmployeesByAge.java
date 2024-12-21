@@ -1,4 +1,4 @@
-package com.java_prac1.demo;
+package com.athena.java_practice2.collection;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,12 +20,24 @@ class Employee {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAge() {
         return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
