@@ -16,7 +16,7 @@ public class WordConversionUpperAndLowerCase {
 
 
         List<String> lowerCase = words.stream()
-                .map(String::toLowerCase)
+                .map(String::toLowerCase)     // same above logic but this time using method reference and str here will not work as str is not a class
                 .toList();
 
         System.out.println("Lowercase---> " + lowerCase);
