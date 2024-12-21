@@ -16,7 +16,7 @@ public class StringsSortingAscAndDesc {
                 .toList();
 
         List<String> descending = fruits.stream()
-                .sorted(Collections.reverseOrder())
+                .sorted(Comparator.reverseOrder())
                 .toList();
 
 
