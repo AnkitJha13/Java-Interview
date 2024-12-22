@@ -2,6 +2,7 @@ package com.athena.java_practice2.collection;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FreqOfCharacters {
     public static void main(String[] args) {
@@ -10,19 +11,27 @@ public class FreqOfCharacters {
 
         Map<Character, Integer> mpp = new HashMap<>();
 
-//        for(char ch : input.toCharArray()){
+        for(char ch : input.toCharArray()){
+            if(ch != ' '){             // to count space also just remove this and we will be able to count space as well
+                mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);
+            }
+        }
+
+//        for(int i=0;i<input.length();i++){
+//            char ch = input.charAt(i);
+//
 //            if(ch != ' '){
 //                mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);
 //            }
 //        }
 
-        for(int i=0;i<input.length();i++){
-            char ch = input.charAt(i);
+//        Map<Character, Long> mpp = input.chars()
+//                .mapToObj(c -> (char) c)
+//                .collect(Collectors.groupingBy(
+//                        c -> c,
+//                        Collectors.counting()
+//                ));
 
-            if(ch != ' '){
-                mpp.put(ch, mpp.getOrDefault(ch, 0) + 1);
-            }
-        }
 
         System.out.println(mpp);
     }
