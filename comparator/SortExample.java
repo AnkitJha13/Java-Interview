@@ -15,15 +15,15 @@ public class SortExample {
 
             Collections.sort(emps, new IdComparator());
 
-            System.out.println(emps + " after sorting based on ID");
+            System.out.println(emps + " after sorting based on ID");   // here the first output will be sorted based on id 
 
 
             ArrayList<Emp> emp1 = new ArrayList<>(emps);
 
             Collections.sort(emp1, new NameComparator());
 
-            System.out.println(emp1 + " after sorting based on name");
-
+            System.out.println(emp1 + " after sorting based on name");  // after that this will be printed based on name
+ 
 
         }
 }
