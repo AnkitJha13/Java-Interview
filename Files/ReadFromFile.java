@@ -29,5 +29,5 @@ public class ReadFromFile {
 - readLine(): Reads one line from the file at a time.
 - != null: The loop continues as long as a line is read.
 
-
+- e.printStackTrace(): Prints the exception details to help identify the issue.
 
