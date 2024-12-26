@@ -21,3 +21,9 @@ public class CreateAFile {
 
     }
 }
+
+
+// Output 
+a example.txt file wiil be created
+
+- file is created example1.txt
