@@ -1,13 +1,13 @@
 package ocp;
 
 public class NotificationService {
-    private Notification notification;
+    private final Notification notification;
 
     public NotificationService(Notification notification) {
-        this.notification = notification;
+        this.notification = notification; // Dependency Injection
     }
 
     public void sendNotification(String message) {
-        this.notification.send(message);
+        notification.send(message);
     }
 }
