@@ -13,3 +13,8 @@ public class Main {
         processor2.makePayment(150.0);  // Processing PayPal Payment
     }
 }
+
+// Output
+
+// Processing credit card payment of: $100.0
+// Processing PayPal payment of: $150.0
