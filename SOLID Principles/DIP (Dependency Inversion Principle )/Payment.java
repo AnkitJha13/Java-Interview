@@ -1,5 +1,5 @@
 package dip;
 
 public interface Payment {
-    void processPayment(double var1);
+    void processPayment(double amount);
 }
