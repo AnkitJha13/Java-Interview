@@ -34,3 +34,38 @@ public class EmployeeManagementSystem {
     }
 
 }
+
+
+
+// Output
+
+=== Full-Time Employee Details ===
+ID: 101
+Name: Athena
+Department: Developer
+Employee Type: Full-time
+Salary: $12500.0
+------------------------
+ID: 102
+Name: John
+Department: HR
+Employee Type: Full-time
+Salary: $15000.0
+------------------------
+=== Full-Time Employee Details ===
+ID: 201
+Name: Mamba
+Department: DevOps
+Employee Type: Part-time
+Hours Worked: 2
+Hourly Rate: $300
+Total Compensation: $600.0
+------------------------
+ID: 202
+Name: Jane
+Department: Support
+Employee Type: Part-time
+Hours Worked: 4
+Hourly Rate: $250
+Total Compensation: $1000.0
+------------------------
