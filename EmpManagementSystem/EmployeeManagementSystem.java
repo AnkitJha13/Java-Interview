@@ -1,5 +1,6 @@
 public class EmployeeManagementSystem {
 
+    // Method to display full-time employees
     public static void displayFullTimeEmployees(FullTimeEmployee[] fullTimeEmployees){
         System.out.println("=== Full-Time Employee Details ===");
         for(FullTimeEmployee ft : fullTimeEmployees){
@@ -7,6 +8,7 @@ public class EmployeeManagementSystem {
         }
     }
 
+    // Method to display part-time employees
     public static void displayPartTimeEmployees(PartTimeEmployee[] partTimeEmployees){
         System.out.println("=== Full-Time Employee Details ===");
         for(PartTimeEmployee pt : partTimeEmployees){
