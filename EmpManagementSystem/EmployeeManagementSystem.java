@@ -27,6 +27,7 @@ public class EmployeeManagementSystem {
         partTimeEmployees[1] = new PartTimeEmployee(202, "Jane", "Support", 4, 250);
 
 
+        // Pass array of objects to methods
         displayFullTimeEmployees(fullTimeEmployees);
         displayPartTimeEmployees(partTimeEmployees);
 
