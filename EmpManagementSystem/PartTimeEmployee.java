@@ -1,12 +1,17 @@
+package EmpManagementSystem;
+
 public class PartTimeEmployee extends Employee{
 
     public int hoursWorked;
     public int hourlyRate;
+    public static double totalPartTimeCompensation = 0; // ✅ Total compensation for part-time
 
     public PartTimeEmployee(int id, String name,  String department, int hoursWorked, int hourlyRate) {
         super(id, name, department);
         this.hoursWorked = hoursWorked;
         this.hourlyRate = hourlyRate;
+        totalPartTimeCompensation += this.calculateCompensation();  // ✅ Increment total compensation for part-time
+       // totalPartTimeCompensation += this.hoursWorked * this.hourlyRate;
     }
 
     public double calculateCompensation(){
@@ -16,7 +21,7 @@ public class PartTimeEmployee extends Employee{
     @Override
     public void displayDetails() {
         super.displayDetails(); // Calls parent class method
-        System.out.println("Employee Type: Part-time");
+        System.out.println("EmpManagementSystem.Employee Type: Part-time");
         System.out.println("Hours Worked: " + hoursWorked);
         System.out.println("Hourly Rate: $" + hourlyRate);
         System.out.println("Total Compensation: $" + calculateCompensation());
