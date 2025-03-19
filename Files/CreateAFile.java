@@ -23,6 +23,12 @@ public class CreateAFile {
 }
 
 
+
+// No, you cannot avoid the try-catch block (or handling the exception) because the createNewFile() method declares that it throws an IOException.
+// IOException is a checked exception, which means it must be either:
+   Caught using a try-catch block
+   Or declared in the main() method using throws
+
 // Output 
 a example.txt file wiil be created
 
