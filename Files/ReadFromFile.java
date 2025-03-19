@@ -26,6 +26,16 @@ public class ReadFromFile {
 - now this file is used to read data from file and will be printed on the screen 
 
 
+## String line;
+   while ((line = bufferedReader.readLine()) != null) {
+      System.out.println(line);
+   }
+
+- bufferedReader.readLine() is called once per loop iteration.
+- The value is stored in line, so you don't lose any data.
+- System.out.println(line) prints the same line that was read.
+
+
 ## BufferedReader reader = new BufferedReader(new FileReader("example.txt")
 - FileReader reads character by character → Less efficient for large files.
 - BufferedReader reads chunks of data into a buffer (not the whole file at once) → More efficient because it reduces the number of I/O calls.
