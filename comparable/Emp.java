@@ -1,40 +1,9 @@
-package comparable;
+package ComparablePractice;
 
-public class Emp implements Comparable<Emp>{
-
-    private String name;
-    private String phone;
-    private int empId;
-
-
-    @Override
-    public int compareTo(Emp o) {
-        return this.empId-o.empId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public int getEmpId() {
-        return empId;
-    }
-
-    public void setEmpId(int empId) {
-        this.empId = empId;
-    }
+public class Emp implements Comparable<Emp> {
+    public String name;
+    public String phone;
+    public int empId;
 
     public Emp(String name, String phone, int empId) {
         this.name = name;
@@ -42,13 +11,25 @@ public class Emp implements Comparable<Emp>{
         this.empId = empId;
     }
 
+
+//    public String getName(){   // write this due to Comparable interface for String, float or Double not for int or long
+//        return name;
+//    }
+
     @Override
-    public String toString() {
-        return "Emp{" +
-                "name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", empId=" + empId +
-                '}';
+    public int compareTo(Emp o) {
+       // return Double.compare(o.empId, this.empId);  // similarly for Float as well (for Descending order)
+        return this.empId - o.empId;  // for int (for Descending order)
     }
 
+
+//    @Override
+//    public int compareTo(Emp o) {
+//        return o.name.compareTo(this.name);  // for String (for Descending order)
+//    }
+
+    @Override
+    public String toString(){
+        return "\n name:- " + name + "\n phone:- " + phone + "\n empId:- " + empId;
+    }
 }
