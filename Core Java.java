@@ -5,6 +5,7 @@
 
 
 
+
 # JDK (java development kit)
 - A toolkit for developing Java applications.
 - Includes the javac compiler to convert Java code into bytecode.
@@ -35,6 +36,23 @@
 
 
 
+# Class Loader
+- In Java it is a part of the JVM responsible for loading .class files into memory so they can be executed.
+
+
+# Types of Class Loaders:-
+- Bootstrap Class Loader – Loads core Java classes from JAVA_HOME/lib (e.g., java.lang.String).
+- Extension Class Loader – Loads classes from JAVA_HOME/lib/ext.
+- Application Class Loader – Loads classes from your project’s classpath.
+
+
+
+# LTS (Long-Term Support) = stable version with long support → safer choice for real-world projects.
+
+
+
+
+
 
 
 ## Different JAVA versions:-
@@ -50,15 +68,19 @@
 - New Date & Time API (LocalDate, LocalTime, LocalDateTime, Period, Duration)
 
 
+
+
 # Java 11 (2018) – LTS
 - var keyword for local variable type inference
-  var name = "Ankit";
+  var name = "Athena";
 
 - New String Methods (isBlank(), lines(), strip(), repeat())
 - Files.readString() and writeString()
 - HTTP Client API (HttpClient, HttpRequest, HttpResponse)
 - Removal of Java EE and CORBA modules
 - Running Java files without compilation step (java Hello.java)
+
+
 
 
 # Java 17 (2021) – LTS
@@ -72,6 +94,7 @@
 - Switch Expressions (return values from switch)
 - Text Blocks (""" multi-line string """)
 - Records (data carrier classes with minimal boilerplate)
+
 
 
 
@@ -4075,6 +4098,4 @@ public class Main {
 
 ==================================================================================================
 ==================================================================================================
-
-
 
