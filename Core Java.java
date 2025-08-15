@@ -3,6 +3,8 @@
 # Solid principles, design patterns then LLD
 
 
+
+
 # JDK (java development kit)
 - A toolkit for developing Java applications.
 - Includes the javac compiler to convert Java code into bytecode.
@@ -23,6 +25,7 @@
 
 
 
+
 # Java is considered platform-independent because it uses Java Virtual Machine (JVM) to execute programs.
   And, JVM is a virtual machine that executes Java bytecode.
   Java Bytecode is a set of instructions that is platform-independent and can be executed by the 
@@ -30,41 +33,81 @@
 
 
 
-# What are the key features introduced in JDK 1.6 or later? How have they improved performance or functionality?
-- It integrated dynamic languages like JavaScript, increasing flexibility.
-- Lambda expressions and Streams API for functional programming to simplify working with collections.
-- New HTTP Client API for modern web protocols.
-- Local-variable type inference (var) for cleaner code.
-- Enhanced try-with-resources to reduce boilerplate code and avoid resource leaks.
 
 
 
 
 ## Different JAVA versions:-
 # Java 8 (2014)
-- Lambdas and Streams – Functional programming support.
-- Default and Static Methods – In interfaces.
-- Optional Class – To handle null values.
+- Lambda Expressions
+  list.forEach(n -> System.out.println(n));
+
+- Streams API (map, filter, collect, reduce)
+- Functional Interfaces (Predicate, Function, Supplier, Consumer)
+- Method References (ClassName::methodName)
+- Optional Class (null-safe handling)
+- Default & Static Methods in Interfaces
+- New Date & Time API (LocalDate, LocalTime, LocalDateTime, Period, Duration)
+
 
 # Java 11 (2018) – LTS
-- var – For local variables.
-- HTTP Client – For making HTTP calls.
-- String and Files API – New utility methods.
+- var keyword for local variable type inference
+  var name = "Ankit";
+
+- New String Methods (isBlank(), lines(), strip(), repeat())
+- Files.readString() and writeString()
+- HTTP Client API (HttpClient, HttpRequest, HttpResponse)
+- Removal of Java EE and CORBA modules
+- Running Java files without compilation step (java Hello.java)
+
 
 # Java 17 (2021) – LTS
-- Sealed Classes – Control which classes can extend a class.
-- Pattern Matching – Simplify switch statements.
-- Foreign Function & Memory API – Call native code directly.
+- Currently the most stable LTS used in modern projects.
+- Sealed Classes (restrict subclassing)
+- Pattern Matching for instanceof
+  if (obj instanceof String s) {
+    System.out.println(s.toLowerCase());
+  }
+
+- Switch Expressions (return values from switch)
+- Text Blocks (""" multi-line string """)
+- Records (data carrier classes with minimal boilerplate)
+
+
+
 
 # Java 21 (2023) – LTS
-- Record Patterns – Match and extract values from objects.
-- Virtual Threads – Handle more threads efficiently.
-- String Templates – Easier string formatting.
+- Latest LTS
+- Virtual Threads (Project Loom – lightweight threads)
+- String Templates (concise string formatting)
+- Record Patterns (deconstruct records in pattern matching)
+- Sequenced Collections (preserve order in APIs)
+
+
 
 # Java 24 (2024) – Latest
 - Better Garbage Collection – Faster memory cleanup.
 - Stream Gatherers – Process data more easily.
 - Class-File API – Work with class files directly.
+
+
+
+
+
+
+## Applications developed using Java
+- Desktop Applications – e.g., IDEs like Eclipse, media players.
+- Web Applications – e.g., e-commerce sites, online banking (using Java EE, Spring).
+- Mobile Applications – Android apps (Java was primary for Android development).
+- Enterprise Applications – Large-scale systems like ERP, CRM.
+- Cloud-based Applications – Microservices, cloud APIs using Spring Boot.
+- Games and Embedded Systems – 2D/3D games, IoT devices.
+
+
+
+
+
+
 
 
 
@@ -204,6 +247,25 @@ class Car {
 - ex:-
   double d = 10.5;
   int num = (int) d; // double to int (manually done)
+
+
+
+
+
+## local and global variables
+# local variables
+- Declared inside a method, constructor, or block.
+- Created when method is called, destroyed when it ends.
+- Accessible only within that method/block.
+- Must be initialized before use.
+
+
+# global variables
+- Declared inside class but outside any method.
+- Exists as long as the object (or class for static) exists.
+- Accessible by all methods of the class.
+- Gets default value if not initialized.
+
 
 
 
@@ -419,7 +481,7 @@ class Car {
 
 
 ## Data Types in Java
-#  Primitive (Stores value directly)
+# Primitive (Stores value directly)
 - Simple, built-in types.
 - Examples: byte, short, int, long, float, double, char, boolean
 
@@ -1463,7 +1525,7 @@ class QueueB {
 ## Generics in Java
 - Provides type safety and eliminates type casting.
 - Allows reusable code that works with any data type.
-- Common type parameters: <T> (Type), <E> (Element), <K> (Key), <V> (Value).
+- Common type parameters: <V> (Value), <E> (Element), <K> (Key), <T> (Type)
 - ex:- This example shows how a generic class Box<T> works with different data types (Integer and String).
   // Generic class
   class Box<T> {
@@ -1861,6 +1923,27 @@ class QueueB {
 
 
 
+
+
+
+
+
+
+
+
+
+## Applets
+- Small Java program that runs in browser or applet viewer.
+- Inherits from java.applet.Applet class.
+- No main() method – uses lifecycle methods (init(), start(), stop(), destroy()).
+- Used for interactive web apps (animations, games).
+- Outdated – replaced by modern web tech (HTML5, JS).
+
+
+
+
+
+
 ====================================================================
 
 ################### JAVA and OOPS ####################################
@@ -2216,6 +2299,8 @@ Speaking
 12
 ----------------------------------
 
+- Multiple Inheritance: A single class is inherited from two classes.
+
 - Java doesn't support multiple inheritance.
 
 - Multilevel Inheritance: Child class derived from the class which is also derived from another base class.
@@ -2356,7 +2441,6 @@ public class Main {
         
         Dog d = new Dog();  
         Cat c = new Cat();  
-
       
         d.sound();  // Output: Dog barks
         c.sound();  // Output: Cat meows
@@ -2432,6 +2516,27 @@ value of x-3 and y-3 is 85, 64
 
 
 --------------------------------------------------------------------------
+
+## Three Things Needed for Method Overloading:
+# Different number of parameters
+- ex:-
+  void show(int a) {}
+  void show(int a, int b) {}  // Overloaded: different number
+
+
+
+# Different types of parameters
+- ex:-
+  void show(int a) {}
+  void show(double a) {}  // Overloaded: different type
+
+
+# Different order of parameters (if types are different)
+- ex:-
+  void show(int a, String b) {}
+  void show(String b, int a) {}  // Overloaded: different order
+
+
 
 
 
@@ -2525,7 +2630,7 @@ Speaking
 
 
 
------CODE-------------------------------------------------------------------
+-----CODE------------------------------------------------------------------------------------
 
 
 public class Student {
@@ -2651,7 +2756,7 @@ Immortal athena soul
 
 
 # Abstract class
-- A class declared with the abstract keyword.
+- Declared using abstract keyword.
 - Cannot be instantiated directly (cannot create object of an abstract class using new keyword).
 - Can have a constructor
 - Does not support multiple inheritance (a class can extend only one abstract class).
@@ -2718,13 +2823,13 @@ Immortal athena soul
 
 ## Use Abstract class vs Interface
 # Abstract class
-- You need to provide a common base for related classes.
-- You need to define instance variables or constructors.
+- When classes are closely related and share common code.
+- When you need constructors or instance variables.
 
 
 # Interface
-- You want to define a behavior that multiple classes can implement.
-- You need multiple inheritance (a class can implement more than one interface).
+- When you want to define common behavior for unrelated classes.
+- When you need multiple inheritance (class can implement many interfaces).
 
 
 
@@ -2913,24 +3018,22 @@ interface Pet extends Animal {
 
 
 ## CONSTRUCTOR :-   
-- It is a special method that is invoked automatically at the time of object creation.
-- The purpose of a constructor is to construct an object and assign values to the object's members.
+- A special method that is automatically called when an object is created.
+- Purpose of constructor is to construct object and assign values to the object's members.
 
 
 # Why we need constructor?
-- Ensures proper initialization of data members.
+- Initializes object variables at creation.
 - Prevents uninitialized variables, avoiding unpredictable behavior.
 
 
 # Characteristics:-
-- Constructor has the same name as the class itself.
-- No return type, not even void.
+- Same name as the class.
+- No return type (not even void).
 - Constructor is only called once, when an object is created. 
-- Memory allocation happends when an constructor is called.
-- Constructors can be overloaded, meaning you can have multiple constructors with 
-  different parameters.
-- If no constructor is defined, Java provides a default constructor (without parameters) to 
-  initialize the object.
+- Memory allocation happens when an constructor is called.
+- Can be overloaded (multiple constructors with different parameters).
+- If not defined, Java provides a default constructor.
 
 - ex:-
       class Student {  
@@ -2956,7 +3059,7 @@ interface Pet extends Animal {
 • Parameterized constructor - The constructors that take some arguments are known as parameterized
                               constructors.
 
-• Copy constructor - Initializes a new object using another existing object of the same class.
+• Copy constructor - Initializes an object using another object of the same class.
                      Creates a copy of an object.
 
 
@@ -3032,17 +3135,17 @@ public class EfficientDataStructure {
 
 ## Constructor vs Method 
 # Constructor 
-- It is a special method that is invoked automatically at the time of object creation.
-- The purpose of a constructor is to construct an object and assign values to the object's members.
-- Constructor has the same name as the class itself.
-- No return type, not even void.
+- A special method that is automatically called when an object is created.
+- Purpose of constructor is to construct object and assign values to the object's members.
+- Same name as the class.
+- No return type (not even void).
 - Automatically called when an object is created using the new keyword.
 
-# Method
+# Method / Functions
 - Used to perform specific actions or operations.
 - Can have any name (not necessarily the class name).
 - Must have a return type (e.g., void, int, String, etc.).
-- Explicitly called using the object or class reference.
+- Explicitly called using object or class reference.
 
 
 
@@ -3781,129 +3884,197 @@ public class Main {
 
 
 
+
+
+
 ## Graphs
 - It is a collection of nodes (vertices) and edges (connections) between them.
 - It represents relationships (e.g., cities connected by roads, social network friendships).
 
-
 => Applications Of Graph:-
-
+- GPS Navigation, Network Routing, Social Networks, Web Crawling, Recommendation Systems, Circuit Design, Task Scheduling, etc.
 
 # Graph Types:-
 - Directed Graph: Edges have direction (e.g., one-way roads).
-- Undirected Graph: Edges have no direction (e.g.,two-way roads).
-- Weighted Graph:  Edges have weights (e.g., distance, cost).
+- Undirected Graph: Edges have no direction (e.g., two-way roads).
+- Weighted Graph: Edges have weights (e.g., distance, cost).
 - Unweighted Graph: Edges have no weights.
 - Cyclic Graph – Contains a cycle (can return to the starting node).
 - Acyclic Graph – No cycles (e.g., DAG – Directed Acyclic Graph).
-- Bipartite Graph - It is a graph if you can divide its nodes into two groups such that no two adjacent 
-                    nodes are in the same group.
-
-
+- Bipartite Graph - It is a graph if you can divide its nodes into two groups such that no two adjacent nodes are in the same group.
+- Connected Graph – There is a path between every pair of vertices.
+- Disconnected Graph – Some vertices are not reachable from others.
+- Complete Graph – Every pair of distinct vertices is connected by a unique edge.
+- Sparse Graph – Very few edges.
+- Dense Graph – Large number of edges close to maximum possible.
+- Multigraph – A graph where multiple edges between two nodes are allowed.
+- Self-loop – An edge connecting a node to itself.
+- Tree – A connected acyclic undirected graph.
+- Forest – A collection of disjoint trees.
 
 # Key Terms
 - Nodes (Vertices) → A point in the graph.
 - Edge → A connection between two vertices.
 - Degree → Number of edges connected to a vertex.
 - Incoming Edge (Indegree) → Number of edges coming into a node.
-- Outgoing Edge (Outdegree) → Number of edges going out from a node
-- Path - contains a lot of nodes and each of them are reachable.
+- Outgoing Edge (Outdegree) → Number of edges going out from a node.
+- Path → A sequence of vertices where each adjacent pair is connected.
 - Total degree of a graph = 2 * Edges
-
-
 
 # Graph Representation:
 - Adjacency List – Stores neighbors (better for sparse graphs).
 - Adjacency Matrix – 2D array of connections (better for dense graphs).
 
-
+---
 
 ## Graph Traversal Algorithms
-# BFS (Breadth-First  Search)
+
+# BFS (Breadth-First Search)
 - Explores all neighbors level by level.
 - Uses Queue (FIFO).
 - Applications: Shortest path in unweighted graphs, Web Crawlers, Social Network Friend Suggestions.
- 
-# DFS (Depth-First  Search)
+
+# DFS (Depth-First Search)
 - Explores as far as possible along each branch before backtracking.
 - Uses Stack (or recursion).
 - Applications: Cycle Detection, Maze Solving, Connected Components.
 
+# Flood-fill Algorithm
+- DFS/BFS based algorithm used in 2D grids.
+- Applications: Image Fill, Region Coloring, Island Counting.
 
+# Bipartite Graph Check
+- Use BFS/DFS with 2-coloring to check whether a graph is bipartite.
 
+# Union-Find / Disjoint Set Union (DSU)
+- Used to detect cycles and manage connected components.
+- Applications: Kruskal's MST, Network Connectivity.
+- Operations:
+  - `Find`: Determine root of the set.
+  - `Union`: Combine two sets.
+  - Optimized using Path Compression + Union by Rank.
+
+---
 
 ### Graph Algorithms
 
 ## Shortest Path Algorithms
-# Dijkstra's  Algorithm
-- Finds the shortest path from a source node to all other nodes (Uses Priority Queue).
-- Use Priority Queue as it always picks the node with the shortest known distance.  
 
-# Floyd-Warshall  Algorithm
-- All-pairs shortest path (O(V³)).
+# Dijkstra's Algorithm
+- Finds the shortest path from a source node to all other nodes (Uses Priority Queue).
+- Cannot handle negative weights.
+- Time: O((V + E) log V) with Min-Heap.
 
 # Bellman Ford Algorithm
-- Handles negative weights but slower than Dijkstra.
+- Handles negative weights.
+- Slower than Dijkstra.
+- Detects negative weight cycles.
+- Time: O(V * E)
 
+# Floyd-Warshall Algorithm
+- All-pairs shortest path algorithm.
+- Time: O(V³)
+- Works with negative weights (no negative cycles).
 
-
+---
 
 ## Minimum Spanning Tree (MST) Algorithms
-- A spanning tree is a subset of a graph that includes all vertices with the minimum 
-  number of edges (V-1) and no cycles.
+- A spanning tree is a subset of a graph that includes all vertices with the minimum number of edges (V-1) and no cycles.
 - A minimum spanning tree (MST) is a spanning tree with the minimum possible total edge weight.
 - Used in network design, clustering, and optimization problems.
 
 # Prim’s Algorithm (Greedy Approach)
 - Starts with any node and expands MST by adding the smallest edge that connects a new node.
 - Uses a priority queue (Min-Heap) for efficient edge selection.
-- Time Complexity: O(E log V) using a Min-Heap.
-- Best when the graph is dense (more edges).
+- Time Complexity: O(E log V)
+- Best when the graph is dense.
 
 # Kruskal’s Algorithm (Greedy + Disjoint Set)
 - Sorts all edges by weight and adds the smallest edge that doesn’t form a cycle.
 - Uses Union-Find (Disjoint Set) to detect cycles efficiently.
-- Time Complexity: O(E log E) (sorting dominates).
-- Best when the graph is sparse (fewer edges).
+- Time Complexity: O(E log E)
+- Best when the graph is sparse.
 
-# Flood-fill Algorithm
-
-
+---
 
 # Common Graph Problems & Their Solutions
-- Shortest Path (Unweighted):-	BFS
-- Shortest Path (Weighted):-	Dijkstra, Bellman-Ford
-- Minimum Spanning Tree (MST):-	Kruskal, Prim
-- Cycle Detection:-	BFS/DFS
-- Topological Sorting:-	DFS, Kahn’s Algorithm
-- Strongly Connected Components (SCC):-	Kosaraju’s Algorithm
 
+| Problem                          | Solution                             |
+|----------------------------------|--------------------------------------|
+| Shortest Path (Unweighted)       | BFS                                  |
+| Shortest Path (Weighted)         | Dijkstra, Bellman-Ford               |
+| All-Pairs Shortest Path          | Floyd-Warshall                       |
+| Minimum Spanning Tree (MST)      | Kruskal, Prim                        |
+| Cycle Detection (Undirected)     | DFS, Union-Find                      |
+| Cycle Detection (Directed)       | DFS + Recursion Stack                |
+| Topological Sorting              | DFS, Kahn’s Algorithm                |
+| Strongly Connected Components    | Kosaraju’s Algorithm                 |
+| Bipartite Check                  | BFS/DFS with 2-coloring              |
+| Counting Connected Components    | DFS/BFS                              |
+| Bridge & Articulation Point      | Tarjan’s Algorithm (DFS + Low Time)  |
 
-
+---
 
 # Topological Sorting (Only for DAGs) 
-- Linear ordering of vertices in a DAG (Directed Acyclic Graph) where every 
-  directed edge (u → v) ensures u appears before v.
+- Linear ordering of vertices in a DAG (Directed Acyclic Graph) where every directed edge (u → v) ensures u appears before v.
 - Applicable only to DAGs (Graphs with no cycles).
-- ex:- Task Scheduling, CI/CD Pipelines, Instruction Scheduling in Compilers
+- Used in: Task Scheduling, CI/CD Pipelines, Course Scheduling, Instruction Scheduling in Compilers
+- Algorithms:
+  - DFS-based
+  - Kahn’s Algorithm (BFS-based)
 
+---
 
-# Dynamic programming
+## Trees (as Special Graphs)
+- Trees are connected acyclic undirected graphs.
+
+### Special Types of Binary Trees:
+- **Full Binary Tree**: Every node has 0 or 2 children.
+- **Perfect Binary Tree**: All internal nodes have 2 children and all leaves at same level.
+- **Complete Binary Tree**: All levels filled except possibly last, filled left to right.
+- **Skewed Binary Tree**:
+  - Left Skewed – All nodes have only left child.
+  - Right Skewed – All nodes have only right child.
+- **Balanced Binary Tree**: Height difference of left and right subtree is at most 1.
+
+---
+
+## Dynamic Programming (DP)
+
 - A problem-solving technique used for optimization.
-- Breaks down a complex problem into smaller subproblems and stores the results of solved subproblems
-  to avoid redundant work.
+- Breaks down a complex problem into smaller subproblems and stores the results of solved subproblems to avoid redundant work.
 
 => Two main approaches:
-- Top-Down (Memoization): Solve the problem recursively and store results to avoid recomputation.
-- Bottom-Up (Tabulation): Solve the problem iteratively by solving all subproblems first.
+- **Top-Down (Memoization)**: Solve the problem recursively and store results to avoid recomputation.
+- **Bottom-Up (Tabulation)**: Solve the problem iteratively by solving all subproblems first.
 
-
-
+---
 
 # Common DP Problems
-- Fibonacci Number:-	DP with Memoization / Tabulation
-- Longest Common Subsequence (LCS):-	DP with 2D table
-- Knapsack Problem:-	DP (0/1 Knapsack)
-- Coin Change:-	DP (Unbounded Knapsack)
+
+- **Fibonacci Number** → DP with Memoization / Tabulation
+- **Longest Common Subsequence (LCS)** → DP with 2D table
+- **Knapsack Problem (0/1)** → DP (2D or 1D optimization)
+- **Coin Change (Unbounded Knapsack)** → DP
+- **Longest Increasing Subsequence (LIS)** → DP (O(n²) or Binary Search O(n log n))
+- **Edit Distance** → DP with 2D table
+- **Matrix Chain Multiplication** → DP
+- **Rod Cutting Problem** → DP
+- **Palindrome Partitioning** → DP with substring checking
+- **Subset Sum / Partition Equal Subset Sum** → DP
+- **DP on Trees** → E.g., Max path sum, subtree sums, etc.
+
+---
+
+
+
+
+
+
+
 
 ==================================================================================================
+==================================================================================================
+
+
+
