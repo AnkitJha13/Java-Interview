@@ -36,6 +36,8 @@
 
 
 
+
+
 # Class Loader
 - In Java it is a part of the JVM responsible for loading .class files into memory so they can be executed.
 
@@ -48,6 +50,9 @@
 
 
 # LTS (Long-Term Support) = stable version with long support → safer choice for real-world projects.
+
+
+
 
 
 
@@ -118,6 +123,10 @@
 
 
 
+
+
+
+
 ## Applications developed using Java
 - Desktop Applications – e.g., IDEs like Eclipse, media players.
 - Web Applications – e.g., e-commerce sites, online banking (using Java EE, Spring).
@@ -125,6 +134,7 @@
 - Enterprise Applications – Large-scale systems like ERP, CRM.
 - Cloud-based Applications – Microservices, cloud APIs using Spring Boot.
 - Games and Embedded Systems – 2D/3D games, IoT devices.
+
 
 
 
@@ -182,41 +192,49 @@
 
 
 
-## difference between when we use public static void init(){} and public void init(){}
+
+
+
+
+
+
+
+
+## Difference between Static and Instance (Non-Static) Methods
 - ex 
 class Car {
-  static int totalCars = 0; // A static variable shared by all cars
-  String model; // An instance variable (each car has its own model)
+    static int totalCars = 0;  // Static variable shared by all cars
+    String model;              // Instance variable (unique for each car)
 
-  // Static method
-  public static void showTotalCars() {
-    System.out.println("Total cars: " + totalCars);
-  }
+    // Static method
+    public static void showTotalCars() {
+        System.out.println("Total cars: " + totalCars);
+    }
 
-  // Instance method
-  public void showModel() {
-    System.out.println("Car model: " + model);
-  }
+    // Instance method
+    public void showModel() {
+        System.out.println("Car model: " + model);
+    }
 
-  // Constructor to increase totalCars when a new Car object is created
-  public Car(String model) {
-    this.model = model;
-    totalCars++;
-  }
+    // Constructor
+    public Car(String model) {
+        this.model = model;
+        totalCars++;
+    }
 
-  public static void main(String[] args) {
-    Car car1 = new Car("Toyota");
-    Car car2 = new Car("Honda");
-    Car car3 = new Car("Ford");
+    public static void main(String[] args) {
+        Car car1 = new Car("Toyota");
+        Car car2 = new Car("Honda");
 
-    car1.showModel(); // Output: Car model: Toyota
-    car2.showModel(); // Output: Car model: Honda
-    car3.showModel(); // Output: Car model: Ford
+        // Instance method call (requires object)
+        car1.showModel(); // Output: Car model: Toyota
+        car2.showModel(); // Output: Car model: Honda
 
-    Car.showTotalCars(); // Output: Total cars: 3
-
-  }
+        // Static method call (no object needed)
+        Car.showTotalCars(); // Output: Total cars: 2
+    }
 }
+
 
 
 => Static Method (public static void showTotalCars() {})
@@ -230,9 +248,13 @@ class Car {
 => Instance Method (public void showModel() {})
 - Must be called on an object (instance).
   ex:- car1.showModel() where car1 is an object of Car.
-- Can access both instance (model) and static (totalCars) variables.
-  ex:- showModel() displays both the model for the specific car instance and totalCars.
-- Ideal for behaviors or operations that are specific to an individual object.
+- Can access both instance variables (model) and static variables (totalCars).
+  ex:- Car objects can access both static and non static variables.
+- Best for behaviors specific to an object.
+
+
+
+
 
 
 
@@ -249,6 +271,10 @@ class Car {
 # double - 8 bytes (64 bits)
 # char - 2 bytes (16 bits)
 # boolean - 1 bit (JVM dependent)
+
+
+
+
 
 
 
@@ -275,10 +301,16 @@ class Car {
 
 
 
+
+
+
+
+
+
 ## local and global variables
 # local variables
 - Declared inside a method, constructor, or block.
-- Created when method is called, destroyed when it ends.
+- Exist only while method runs.
 - Accessible only within that method/block.
 - Must be initialized before use.
 
@@ -290,6 +322,52 @@ class Car {
 - Gets default value if not initialized.
 
 
+- ex:-
+
+class Car {
+    // Global variable
+    String model = "Ford";
+
+    public void setModel() {
+        // Local variable
+        String localName = "Toyota";
+        System.out.println("Local Variable: " + localName);
+        System.out.println("Global Variable: " + model); 
+    }
+
+    public void show() {
+        // System.out.println(localName);   // localName not accessible here
+        System.out.println("Global Variable: " + model);  
+    }
+
+    public static void main(String[] args) {
+        Car c1 = new Car();
+        c1.setModel();
+        c1.show();
+        System.out.println(c1.model); // can call this directly as global variable
+
+    }
+}
+
+
+// Output
+Local Variable: Toyota
+Global Variable: Ford
+Global Variable: Ford
+Ford
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -298,10 +376,14 @@ class Car {
 # Strings are Immutable.
 
 # Why Strings are immutable?
-- Immutable strings prevent unauthorized modifications, ensuring sensitive data remains safe.
-- Immutable strings can be shared across multiple threads without synchronization issues.
-- Immutable strings ensure their hash codes remain constant, which is essential for hash-based collections
-  like HashMap.
+- Once created, cannot be changed.
+- Any modification → new object created.
+- Benefits:
+  Security (data can’t be altered).
+  Thread-safety (safe across threads).
+  Constant hashcode (important for HashMap, HashSet).
+
+
 
 
 
@@ -334,7 +416,7 @@ class Car {
 
 
 # String Pool (also called String Constant Pool or String Literal Pool)
-- It is a special area in memory where Java stores String literals.
+- Special area in heap memory for String literals.
 - It’s managed by the JVM in heap memory for efficiency.
 - If a String literal already exists, the JVM reuses it, saving memory.
 - Strings created with new are not added to the pool automatically.
@@ -348,8 +430,9 @@ class Car {
 
 
 
-## Mutable vs Immutable String
 
+
+## Mutable vs Immutable String
 # Mutable string 
 - Can be modified after creation, without creating a new object.
 - Any modifications affect the original string object.
@@ -374,8 +457,10 @@ class Car {
 
 
 
-## StringBuffer vs StringBuilder
 
+
+
+## StringBuffer vs StringBuilder
 # StringBuffer 
 - Can modify the original string.
 - Synchronized methods ensure safety in multi-threaded environments.
@@ -402,6 +487,7 @@ class Car {
 
 
 
+
 # Flowcharts
 - Diagrams to represents solutions of problems.
 
@@ -422,6 +508,7 @@ class Car {
 
 
 
+
 # import java.util.Scanner
 - Imports only the Scanner class from java.util package to read inputs.
 - Scanner sc = new Scanner(System.in)
@@ -436,10 +523,6 @@ class Car {
 - Offers efficient concurrent data structures that reduce synchronization overhead.
 
 
-
-# Enum in java 
-- It is short for enumeration.
-- It is a special data type in Java that allows you to define a collection of named constants.
 
 
 # Scanner 
@@ -489,6 +572,9 @@ class Car {
 
 
 
+
+
+
 ## Types of Methods in Java
 # User-defined
 - Created by the User (e.g., sum(), factorial()).
@@ -498,7 +584,10 @@ class Car {
 
 
 
+
 # Arrays.sort (to sort)
+
+
 
 
 
@@ -515,6 +604,8 @@ class Car {
 
 
 
+
+
 ## Operators
 # Arithmetic Operators (Perform mathematical operations)
 - +, -, *, /, %
@@ -524,6 +615,9 @@ class Car {
 
 # Bitwise Operators (Operate on bits)
 - &, |, ^, ~, <<, >>, >>>
+
+
+
 
 
 
@@ -801,6 +895,7 @@ class Car {
 
 
 --------------------------------------------------------------------------------------------------------
+
 
 
 # Enum in java 
@@ -1362,22 +1457,6 @@ class QueueB {
 
 
 
-# Lambda expression  (--> arrow keyword)
-- It is a concise way to represent an anonymous function (a function without a name).
-- It allows us to write functional code with fewer lines.
-- Main goal of lambda expressions is to reduce boilerplate code.
-- They can only be used with functional interfaces (interfaces that have only one abstract method).
-- ex:-
-  public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-        // Using a lambda expression to filter even numbers
-        numbers.stream()
-               .filter(n -> n % 2 == 0)
-               .forEach(n -> System.out.println(n));  // Output: 2, 4, 6, 8, 10
-  }
-
-
 
 
 
@@ -1395,6 +1474,29 @@ class QueueB {
 - ex
   List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
   names.forEach(name -> System.out.println(name.toUpperCase()));  // Method invocation with additional logic
+
+
+
+
+
+
+
+## Lambda expression  (--> arrow keyword)
+- It is a concise way to represent an anonymous function (a function without a name).
+- It allows us to write functional code with fewer lines.
+- Main goal of lambda expressions is to reduce boilerplate code.
+- They can only be used with functional interfaces (interfaces that have only one abstract method).
+- ex:-
+  interface Calculator {
+      int add(int a, int b);  // Single abstract method
+  }
+
+  public class Main {
+      public static void main(String[] args) {
+          Calculator calc = (a, b) -> a + b;  // Lambda expression
+          System.out.println(calc.add(5, 3));  // Output: 8
+      }
+  }
 
 
 
@@ -2326,6 +2428,53 @@ Speaking
 
 - Java doesn't support multiple inheritance.
 
+
+-- CODE ---------------------------------------------
+
+interface Camera {
+    void takePhoto();
+}
+
+
+interface MusicPlayer {
+    void playMusic();
+}
+
+
+class Smartphone implements Camera, MusicPlayer {
+
+    @Override
+    public void takePhoto() {
+        System.out.println("Taking photo with 108MP camera...");
+    }
+
+    @Override
+    public void playMusic() {
+        System.out.println("Playing music through speakers...");
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Smartphone phone = new Smartphone();
+        phone.takePhoto();
+        phone.playMusic();
+    }
+}
+
+
+
+# Output
+Taking photo with 108MP camera...
+Playing music through speakers...
+
+
+
+
+-----------------------------------------------------
+
+
 - Multilevel Inheritance: Child class derived from the class which is also derived from another base class.
 
 
@@ -2358,7 +2507,7 @@ public class Main {
 }
 
 
-#OUTPUT 
+# OUTPUT 
 Speaking 
 8
 
@@ -2422,7 +2571,7 @@ public class Main {
 
 
 
-#OUTPUT 
+# OUTPUT 
 Speaking
 Barking
 Hybrid age is 69
@@ -2623,6 +2772,10 @@ public class Main {
 
         Animal a = new Animal();
         a.speak();  
+
+        Animal a = new Dog();
+        a.speak(); 
+        
     }
 }
 
@@ -2630,6 +2783,7 @@ public class Main {
 #OUTPUT-->
 Barking 
 Speaking 
+Barking
 
 
 ----------------------------------------------------------------------------------------------
@@ -2971,6 +3125,10 @@ interface Pet extends Animal {
 - Ex:- public, private, protected amd default. 
 
 
+=> If no access modifier is written 
+- No modifier on a class → Default (package-private) class
+- No modifier on variables/methods/constructors → Default (package-private) members
+
 
 
 # Public:-
@@ -3075,79 +3233,96 @@ interface Pet extends Animal {
  
 
 
-# TYPES-->
-• Default constructor - The constructor which doesn’t take any argument.
-                        It has no parameters.
-
-• Parameterized constructor - The constructors that take some arguments are known as parameterized
-                              constructors.
-
-• Copy constructor - Initializes an object using another object of the same class.
-                     Creates a copy of an object.
+## Types of Constructors (3 types)
+# Default constructor 
+- Created implicitly by compiler if you don’t define any constructor.
+- Always a no-arg constructor.
+- Initializes objects with default values (0, null, false, etc).
 
 
+# Parameterized constructor
+- Takes parameters to initialize an object with specific values.
+
+# Copy constructor 
+- Used to create a new object as a copy of another object.
+- Not built-in like C++, but you can define it yourself.
 
 
+
+
+
+
+# No-Argument Constructor (user-defined) (Not a type but a user defined constructor)
+- You write it explicitly with no parameters.
+- Can have custom initialization logic.
 
 
 # Ex:-
 
-public class EfficientDataStructure {
-    private Map<Integer, String> map;
+package constructor;
 
-    private EfficientDataStructure(){
-        map = new LinkedHashMap<>();  
-    }                                
-                                        
+public class Animal {
 
-    private void add(int key, String value){
-        map.put(key, value);
+    int age;
+    String name;
+
+    // 1. Default Constructor  (provided already by the compiler)
+    Animal() {
+        System.out.println("Default constructor called");
     }
 
-    private  void remove(int key){
-        map.remove(key);
+    // 2. No-Argument Constructor (explicitly written)
+    Animal(int dummy) {  // used dummy just to differentiate otherwise no need
+        age = 2;
+        name = "Rhino";
+        System.out.println("No-argument constructor called");
     }
 
-    private String getValue(int key){
-        return map.getOrDefault(key, null);
+    // 3. Parameterized Constructor
+    Animal(int age, String name) {
+        this.age = age;
+        this.name = name;
+        System.out.println("Parameterized constructor called");
     }
+
+    // 4. Copy Constructor
+    Animal(Animal other) {
+        this.age = other.age;
+        this.name = other.name;
+        System.out.println("Copy constructor called");
+    }
+
+    void display() {
+        System.out.println("Age: " + age + ", Name: " + name);
+    }
+
     public static void main(String[] args) {
-      EfficientDataStructure ds = new EfficientDataStructure();
-      ds.add(1, "One");
-      ds.add(2, "Two");
+        Animal a1 = new Animal();                // Default
+        Animal a2 = new Animal(0);               // No-arg (explicit)
+        Animal a3 = new Animal(5, "Tiger");      // Parameterized
+        Animal a4 = new Animal(a3);              // Copy
 
-      System.out.println(ds.getValue(1));  // this gives value
-
-      ds.remove(1);
-
-      System.out.println(ds.getValue(1));
+        a1.display();
+        a2.display();
+        a3.display();
+        a4.display();
     }
 }
 
 
 
 
----------------
-==> private EfficientDataStructure(){
-        map = new LinkedHashMap<>();  
-    }                                 
-                                      
-
-// This constructor initializes the map when an instance of EfficientDataStructure is created.
-// Prevents NullPointerException before performing operations like put or remove
-// If the map were reinitialized in each method, every operation
-   would create a new empty map, losing previously stored data.
-
--------------------
+// Output
+Default constructor called
+No-argument constructor called
+Parameterized constructor called
+Copy constructor called
+Age: 0, Name: null
+Age: 2, Name: Rhino
+Age: 5, Name: Tiger
+Age: 5, Name: Tiger
 
 
-
-# To avoid doing this direct way
-
-//  public void add(int key, String value) {
-//  Map<Integer, String> map = new LinkedHashMap<>(); // BAD: New map every time!
-//  map.put(key, value);  // Each call creates a fresh map
-// }
 
 -------------
 
@@ -4098,4 +4273,33 @@ public class Main {
 
 ==================================================================================================
 ==================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
