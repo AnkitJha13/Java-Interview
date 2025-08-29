@@ -27,8 +27,7 @@ public class mainNumberThread {
         NumberThread t2 = new NumberThread("Thread-2");
 
         t1.start();
-
-        t1.join();  // Main thread waits until t1 finishes
+    
         t2.start();
     }
 }
